@@ -1,10 +1,12 @@
 package com.dong.gameobjects;
 
+import com.dong.effect.CacheDataLoader;
 import com.dong.gameobjects.particularobject.Item.PowerUpSpeed;
 import com.dong.gameobjects.particularobject.ParticularObject;
 import com.dong.gameobjects.particularobject.characters.Player;
 import com.dong.gameobjects.particularobject.characters.enemy.Balloom;
 import com.dong.gameobjects.particularobject.characters.enemy.Enemy;
+import com.dong.userinterface.GameFrame;
 
 import java.awt.*;
 import java.util.Collections;
@@ -24,6 +26,41 @@ public class GameWorld {
         backGround=new BackGround(0,0,this);
 
     }
+//    public void setGameWorld(GameWorld gameWorld)
+//    {
+//        this.particularObjectList=gameWorld.particularObjectList;
+//        this.physicalMap=gameWorld.getPhysicalMap();
+//        this.backGround=gameWorld.getBackGround();
+//    }
+//
+
+    public void setBackGround(BackGround backGround) {
+        this.backGround = backGround;
+    }
+
+    public void setParticularObjectList(List<ParticularObject> particularObjectList) {
+        this.particularObjectList = particularObjectList;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public BackGround getBackGround() {
+        return backGround;
+    }
+
+    public PhysicalMap getPhysicalMap() {
+        return physicalMap;
+    }
+
+    public List<ParticularObject> getParticularObjectList() {
+        return particularObjectList;
+    }
+
+    public void setPhysicalMap(PhysicalMap physicalMap) {
+        this.physicalMap = physicalMap;
+    }
 
     public boolean isNextLevel() {
         return nextLevel;
@@ -38,6 +75,11 @@ public class GameWorld {
     }
 
     public void update() {
+        if (backGround.getState()==BackGround.WIN_LEVEL)
+        {
+            this.particularObjectList = Collections.synchronizedList(new LinkedList<ParticularObject>());
+            physicalMap = new PhysicalMap(0, 0, this);
+        }
     }
 
     //    }
