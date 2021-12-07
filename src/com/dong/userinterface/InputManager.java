@@ -1,7 +1,10 @@
 package com.dong.userinterface;
 
+import com.dong.effect.CacheDataLoader;
+import com.dong.gameobjects.BackGround;
 import com.dong.gameobjects.GameWorld;
 
+import javax.sound.sampled.Clip;
 import java.awt.event.KeyEvent;
 
 public class InputManager {
@@ -32,11 +35,13 @@ public class InputManager {
                 gameWorld.player.goRight();
                 break;
             case KeyEvent.VK_ENTER:
-
+                if (gameWorld.backGround.getState()==BackGround.START_GAME)
+                    gameWorld.backGround.setState(BackGround.PLAYING_GAME);
                 break;
             case KeyEvent.VK_SPACE:
                 gameWorld.player.attack();
                 break;
+
         }
     }
 

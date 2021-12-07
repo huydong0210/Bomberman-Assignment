@@ -2,6 +2,7 @@ package com.dong.userinterface;
 
 
 import com.dong.effect.*;
+import com.dong.gameobjects.BackGround;
 import com.dong.gameobjects.GameWorld;
 import com.dong.gameobjects.particularobject.Item.PowerUpSpeed;
 
@@ -22,14 +23,12 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     public GameWorld gameWorld;
     Animation animation;
-    public GamePanel() {
-        gameWorld= new GameWorld();
 
+    public GamePanel() {
+        gameWorld = new GameWorld();
         inputManager = new InputManager(gameWorld);
         bufImage = new BufferedImage(GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_WIDTH, BufferedImage.TYPE_INT_ARGB);
-        animation=CacheDataLoader.getInstance().getAnimation(AnimationName.bomb);
-
-
+        animation = CacheDataLoader.getInstance().getAnimation(AnimationName.bomb);
 
 
     }
@@ -39,17 +38,28 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
         g.drawImage(bufImage, 0, 0, this);
 
     }
-    public void updateGame(){
-        gameWorld.updateObjects();
+
+    public void updateGame() {
+        gameWorld.backGround.update();
+        if (gameWorld.backGround.getState() == BackGround.PLAYING_GAME)
+            gameWorld.updateObjects();
     }
+
     public void renderGame() {
         if (bufImage == null) {
             bufImage = new BufferedImage(GameFrame.SCREEN_WIDTH, GameFrame.SCREEN_HEIGHT, BufferedImage.TYPE_INT_ARGB);
         } else {
             bufG2D = (Graphics2D) bufImage.getGraphics();
         }
-        if (bufG2D != null) {
-            gameWorld.draw(bufG2D);
+        if (gameWorld.backGround.getState() == BackGround.PLAYING_GAME) {
+            if (bufG2D != null) {
+                gameWorld.draw(bufG2D);
+            }
+        } else {
+            gameWorld.backGround.draw(bufG2D);
+        }
+        if (gameWorld.backGround.getState() == BackGround.WIN_LEVEL) {
+            gameWorld.update();
         }
     }
 
