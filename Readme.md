@@ -25,6 +25,10 @@
 - Player khi bắt đầu chơi, hoặc khi sống dậy sẽ có trạng thái vô địch 4 giây không bị chết
 - Tối ưu khả năng di chuyển của player ( di chuyển player dễ hơn, mềm hơn)
 - Khi đi vào công portal ( đã chết hết enemy) sẽ hiện màn hình nextlevel và có nhạc
+- Có giao diện khi bắt đầu, nhấn enter để bắt đầu chơi
+- Tự động chuyển level
+- Có giao diện khi qua hết các level
+- Có giao diện khi qua hết các màn
 
     
       
