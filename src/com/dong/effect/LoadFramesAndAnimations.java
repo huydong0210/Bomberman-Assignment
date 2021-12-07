@@ -396,6 +396,10 @@ public class LoadFramesAndAnimations {
         frameImages.put("nextlevel",loadOneFrameBackGround("nextlevel"));
         frameImages.put("nobehurt",loadOneFrame("nobehurt"));
 
+        frameImages.put("background",loadOneFrameBackGround("Background"));
+
+        frameImages.put("end",loadOneFrameBackGround("end"));
+
     }
 
     public static FrameImage loadOneFrame(String name)

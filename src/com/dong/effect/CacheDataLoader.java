@@ -17,6 +17,8 @@ public class CacheDataLoader {
     private Hashtable<String, FrameImage> frameImages = new Hashtable<String, FrameImage>();
     private Hashtable<String, Animation> animations = new Hashtable<String, Animation>();
     private Hashtable<String, AudioInputStream> sounds=new Hashtable<String, AudioInputStream>();
+    private int level=1;
+
 
     String physicalMap[][];
 
@@ -25,10 +27,22 @@ public class CacheDataLoader {
 
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     public void loadData() {
         loadFrame();
         loadAnimation();
-        loadPhysicalMap(1);
+        loadPhysicalMap(level);
+    }
+    public void loadLevel(){
+        level++;
+        loadPhysicalMap(level);
     }
     public Clip getAudio(String name){
         Clip clip=null;
